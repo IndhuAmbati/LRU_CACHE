@@ -1,10 +1,5 @@
 // Ensure DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
-
-    // -----------------------
-    // BASE_URL: Render backend URL
-    const BASE_URL = "https://lru-cache-2.onrender.com"; // <-- Your deployed backend
-
     const output = document.getElementById("output");
     const cacheDiv = document.getElementById("cache");
     const putBtn = document.getElementById("putBtn");
@@ -45,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!cap || cap <= 0) return alert("Enter valid capacity");
 
         try {
-            const res = await fetch(`${BASE_URL}/setCapacity`, {
+            const res = await fetch("/setCapacity", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ capacity: cap })
@@ -74,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isNaN(key) || isNaN(value)) return alert("Enter valid key and value");
 
         try {
-            const res = await fetch(`${BASE_URL}/put`, {
+            const res = await fetch("/put", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ key, value })
@@ -96,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isNaN(key)) return alert("Enter valid key");
 
         try {
-            const res = await fetch(`${BASE_URL}/get/${key}`);
+            const res = await fetch(`/get/${key}`);
             const data = await res.json();
             output.innerText = data.value === -1 ? `GET ${key} → Not Found` : `GET ${key} → ${data.value}`;
             renderCache(data.cache);
@@ -114,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isNaN(key)) return alert("Enter valid key");
 
         try {
-            const res = await fetch(`${BASE_URL}/delete/${key}`, { method: "DELETE" });
+            const res = await fetch(`/delete/${key}`, { method: "DELETE" });
             const data = await res.json();
             output.innerText = data.error || data.message;
             renderCache(data.cache || []);
