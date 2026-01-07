@@ -1,5 +1,7 @@
 // Ensure DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
+    const BASE_URL = "https://lru-cache-k78t.onrender.com/"; // <-- Replace with YOUR Render backend URL
+
     const output = document.getElementById("output");
     const cacheDiv = document.getElementById("cache");
     const putBtn = document.getElementById("putBtn");
@@ -40,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!cap || cap <= 0) return alert("Enter valid capacity");
 
         try {
-            const res = await fetch("/setCapacity", {
+            const res = await fetch(`${BASE_URL}/setCapacity`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ capacity: cap })
@@ -60,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // -----------------------
     // PUT / Insert
     putBtn.addEventListener("click", async () => {
         if (!cacheSet) return alert("Set cache capacity first");
@@ -69,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isNaN(key) || isNaN(value)) return alert("Enter valid key and value");
 
         try {
-            const res = await fetch("/put", {
+            const res = await fetch(`${BASE_URL}/put`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ key, value })
@@ -83,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // -----------------------
     // GET
     getBtn.addEventListener("click", async () => {
         if (!cacheSet) return alert("Set cache capacity first");
@@ -91,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isNaN(key)) return alert("Enter valid key");
 
         try {
-            const res = await fetch(`/get/${key}`);
+            const res = await fetch(`${BASE_URL}/get/${key}`);
             const data = await res.json();
             output.innerText = data.value === -1 ? `GET ${key} → Not Found` : `GET ${key} → ${data.value}`;
             renderCache(data.cache);
@@ -101,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // -----------------------
     // DELETE
     deleteBtn.addEventListener("click", async () => {
         if (!cacheSet) return alert("Set cache capacity first");
@@ -109,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isNaN(key)) return alert("Enter valid key");
 
         try {
-            const res = await fetch(`/delete/${key}`, { method: "DELETE" });
+            const res = await fetch(`${BASE_URL}/delete/${key}`, { method: "DELETE" });
             const data = await res.json();
             output.innerText = data.error || data.message;
             renderCache(data.cache || []);
