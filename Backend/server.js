@@ -1,32 +1,37 @@
 const express = require("express");
-const path = require("path");
 const bodyParser = require("body-parser");
 const LRUCache = require("./lruCache.js");
 
 const app = express();
-let cache = null; 
+let cache = null; // Initialize cache
 
+// Middleware
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "../Frontend")));
+
+// ----------------------
+// API Routes
+// ----------------------
 
 // Set cache capacity
 app.post("/setCapacity", (req, res) => {
     const { capacity } = req.body;
-    if (!capacity || capacity <= 0) return res.status(400).json({ error: "Invalid capacity" });
+    if (!capacity || capacity <= 0) 
+        return res.status(400).json({ error: "Invalid capacity" });
     cache = new LRUCache(capacity);
-    return res.json({ message: `Cache capacity set to ${capacity}` });
+    res.json({ message: `Cache capacity set to ${capacity}` });
 });
 
-// PUT
+// PUT key-value
 app.post("/put", (req, res) => {
     if (!cache) return res.status(400).json({ error: "Set cache capacity first" });
     const { key, value } = req.body;
-    if (key === undefined || value === undefined) return res.status(400).json({ error: "Invalid key/value" });
+    if (key === undefined || value === undefined) 
+        return res.status(400).json({ error: "Invalid key/value" });
     cache.put(key, value);
     res.json({ message: `Inserted (${key}, ${value})`, cache: cache.getCacheState() });
 });
 
-// GET
+// GET value by key
 app.get("/get/:key", (req, res) => {
     if (!cache) return res.status(400).json({ error: "Set cache capacity first" });
     const key = Number(req.params.key);
@@ -34,7 +39,7 @@ app.get("/get/:key", (req, res) => {
     res.json({ key, value, cache: cache.getCacheState() });
 });
 
-// DELETE
+// DELETE key
 app.delete("/delete/:key", (req, res) => {
     if (!cache) return res.status(400).json({ error: "Set cache capacity first" });
     const key = Number(req.params.key);
@@ -45,11 +50,8 @@ app.delete("/delete/:key", (req, res) => {
     res.json({ message: `Deleted key ${key}`, cache: cache.getCacheState() });
 });
 
-// Serve frontend
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "../Frontend/index.html"));
-});
-
-// ✅ IMPORTANT: Use Render's port
+// ----------------------
+// Start Server
+// ----------------------
 const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
