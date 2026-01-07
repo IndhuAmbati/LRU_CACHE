@@ -1,6 +1,6 @@
 // Ensure DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
-    const BASE_URL = "https://lru-cache-k78t.onrender.com/"; // <-- Replace with YOUR Render backend URL
+    const BASE_URL = "https://lru-cache-1.onrender.com/"; // <-- Replace with YOUR Render backend URL
 
     const output = document.getElementById("output");
     const cacheDiv = document.getElementById("cache");
