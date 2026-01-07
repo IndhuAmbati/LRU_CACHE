@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LRU Cache Visualizer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>LRU Cache Visualizer</h1>
+
+    <!-- Set Cache Capacity -->
+    <div class="controls">
+        <div class="input-group">
+            <label>Cache Capacity:</label>
+            <input type="number" id="capacity" placeholder="Capacity">
+        </div>
+        <div class="button-group">
+            <button id="setCapacityBtn">Set Capacity</button>
+        </div>
+    </div>
+
+    <!-- Insert / GET / DELETE -->
+    <div class="controls" id="operationControls">
+        <div class="input-group">
+            <label>Key:</label>
+            <input type="number" id="key" placeholder="Key">
+        </div>
+        <div class="input-group">
+            <label>Value:</label>
+            <input type="number" id="value" placeholder="Value">
+        </div>
+        <div class="button-group">
+            <button id="putBtn" disabled>Insert / PUT</button>
+            <button id="getBtn" disabled>GET</button>
+            <button id="deleteBtn" disabled>DELETE</button>
+        </div>
+    </div>
+
+    <!-- Output -->
+    <div id="output" class="output-card"></div>
+
+    <!-- Cache State -->
+    <h2>Cache State (Most Recent → Least Recent)</h2>
+    <div id="cache" class="cache"></div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

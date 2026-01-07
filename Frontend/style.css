@@ -1,0 +1,158 @@
+/* Global body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #d5cfcf, #dedbd2);
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    width: 600px;
+    max-width: 95%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+/* Card design */
+.card {
+    background-color: #fff;
+    padding: 25px 30px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+/* Headings */
+h1 {
+    font-size: 2.8rem;
+    margin-bottom: 25px;
+    color: #2c3e50;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #34495e;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+input[type="number"] {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 2px solid #bdc3c7;
+    outline: none;
+    transition: 0.3s;
+    width: 110px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+input[type="number"]:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Buttons */
+button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #2980b9, #3498db);
+    transform: translateY(-2px);
+}
+
+button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+button:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+}
+
+/* Output */
+.output-card {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #2c3e50;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+/* Cache container */
+.cache {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+/* Cache node */
+.cache-item {
+    padding: 10px 15px;
+    border-radius: 8px;
+    background: #2ecc71;
+    color: white;
+    font-weight: 600;
+    min-width: 45px;
+    text-align: center;
+    transition: all 0.3s;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+/* MRU node */
+.cache-item:first-child {
+    background: #b43ce7;
+    transform: scale(1.05);
+}
+
+/* LRU node */
+.cache-item:last-child {
+    background: #e74c3c;
+}
+
+/* Hover effect */
+.cache-item:hover {
+    transform: scale(1.1);
+}
+
+/* Arrow between nodes */
+.arrow {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin: 0 5px;
+}
