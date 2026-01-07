@@ -45,8 +45,11 @@ app.delete("/delete/:key", (req, res) => {
     res.json({ message: `Deleted key ${key}`, cache: cache.getCacheState() });
 });
 
+// Serve frontend
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../Frontend/index.html"));
 });
 
-app.listen(8080, () => console.log("Server running at http://localhost:8080"));
+// ✅ IMPORTANT: Use Render's port
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
