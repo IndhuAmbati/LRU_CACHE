@@ -1,6 +1,9 @@
 // Ensure DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
-    const BASE_URL = "https://lru-cache-1.onrender.com/"; // <-- Replace with YOUR Render backend URL
+
+    // -----------------------
+    // BASE_URL: Render backend URL
+    const BASE_URL = "https://lru-cache-2.onrender.com"; // <-- Your deployed backend
 
     const output = document.getElementById("output");
     const cacheDiv = document.getElementById("cache");
@@ -62,7 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // -----------------------
     // PUT / Insert
     putBtn.addEventListener("click", async () => {
         if (!cacheSet) return alert("Set cache capacity first");
@@ -86,7 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // -----------------------
     // GET
     getBtn.addEventListener("click", async () => {
         if (!cacheSet) return alert("Set cache capacity first");
@@ -105,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // -----------------------
     // DELETE
     deleteBtn.addEventListener("click", async () => {
         if (!cacheSet) return alert("Set cache capacity first");
